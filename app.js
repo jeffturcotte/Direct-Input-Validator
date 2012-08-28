@@ -13,7 +13,7 @@ chrome.extension.onMessage.addListener(
 		
 		// issue is here
 		console.log(request.source);
-		var input = $('<input>>').prop({name: 'fragment'});
+		var input = $('<input>').prop({name: 'fragment'});
 		input[0].value = request.source;
 		$(f).append(input);
 		$(f).submit();
