@@ -1,8 +1,7 @@
-var dtd      = document.doctype;
-var publicId = dtd.publicId ? ' PUBLIC "' + dtd.publicId + '"' : '';
-var publicId = (publicId && dtd.systemId) ? publicId + ' "' + dtd.systemId + '"' : '';
-var systemId = dtd.systemId ? ' SYSTEM "' + dtd.systemId + '"' : '';
-var source   = "<!DOCTYPE " + dtd.name + (publicId || systemId) + '>';
-var source   = source + "\n" + document.documentElement.outerHTML;
+var xhr = new XMLHttpRequest();
+xhr.open("GET", window.location.href, true);
+xhr.onload = function(e) {
+	chrome.extension.sendMessage({source: xhr.responseText});
+}
+xhr.send();
 
-chrome.extension.sendMessage({source: source});
